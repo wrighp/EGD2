@@ -35,7 +35,7 @@ public class WaterManager : MonoBehaviour {
 
     public void CalculateDailyScore(float waterAmount) {
         previousWaterScore = currentWaterScore;
-        currentWaterScore = waterAmount / maxPeopleAlive;
+        currentWaterScore = waterAmount;
 
         lossAmountPrevious = lossAmount;
         lossAmount = previousWaterScore - currentWaterScore;
