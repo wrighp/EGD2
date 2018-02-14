@@ -14,6 +14,10 @@ public class FadeSystem : MonoBehaviour
     int fadeDir = 0;
     bool fading = false;
 
+    void Start() {
+        i = this;
+    }
+
     public IEnumerator PerformFade(object[] values)
     {
         fading = true;
