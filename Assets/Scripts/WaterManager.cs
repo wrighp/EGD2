@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class WaterManager : MonoBehaviour {
 
     public static WaterManager i;
+	public List<GameObject> graves;
 
     float waterScore = 1f;
     float currentWaterScore = 1f;
@@ -24,6 +25,8 @@ public class WaterManager : MonoBehaviour {
         waterScore = maxPeopleAlive;
         currentWaterScore = maxPeopleAlive;
         previousWaterScore = maxPeopleAlive;
+
+		CalculateDailyScore(maxPeopleAlive);
 	}
 
     public void CalculateDailyScore(float waterAmount) {
@@ -58,5 +61,9 @@ public class WaterManager : MonoBehaviour {
                 i.color = new Color(1, 1, 1);
             }
         }
+
+		for(int i = 0; i < graves.Count; i++){
+			graves[i].SetActive(i < deadPeople);
+		}
     }
 }

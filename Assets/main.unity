@@ -1441,6 +1441,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1995343450}
   - component: {fileID: 1995343451}
+  - component: {fileID: 1995343452}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -1478,6 +1479,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47dc8e3b1d7cb9e4f8e7b9fcbb641584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1995343452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1995343449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dd3f5e866a592848987b844175b99b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  graves:
+  - {fileID: 1579718364}
+  - {fileID: 964373032}
+  - {fileID: 1895873334}
+  - {fileID: 26099265}
+  - {fileID: 315539268}
+  maxPeopleAlive: 5
+  healthyPeople: 5
+  sickPeople: 0
+  deadPeople: 0
 --- !u!1 &2071114396
 GameObject:
   m_ObjectHideFlags: 0
