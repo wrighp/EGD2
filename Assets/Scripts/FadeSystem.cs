@@ -16,6 +16,7 @@ public class FadeSystem : MonoBehaviour
 
     void Start() {
         i = this;
+        PerformFadeIn();
     }
 
     public IEnumerator PerformFade(object[] values)
@@ -23,21 +24,41 @@ public class FadeSystem : MonoBehaviour
         fading = true;
         fadeDir = (int)values[0];
         alpha = Mathf.Clamp01(1 - fadeDir);
+        while (!(alpha >= 1 && fadeDir == 1) && !(alpha <= 0 && fadeDir == -1)) {
+            
+            yield return null;
+        }
+
+        if (alpha >= 1 && fadeDir == 1 && values[1] != null) {
+            SceneManager.LoadScene((string)values[1]);
+            this.StopAllCoroutines();
+        }
+        else {
+            fading = false;
+        }
+        yield return null;
+    }
+
+    public IEnumerator PerformMultiFade()
+    {
+        fading = true;
+        fadeDir = 1;
+        alpha = 0;
+        while (!(alpha >= 1 && fadeDir == 1) && !(alpha <= 0 && fadeDir == -1))
+        {
+
+            yield return null;
+        }
+        fadeDir = -1;
+        alpha = 1;
         while (!(alpha >= 1 && fadeDir == 1) && !(alpha <= 0 && fadeDir == -1))
         {
 
             yield return null;
         }
 
-        if (alpha >= 1 && fadeDir == 1 && values[1] != null)
-        {
-            SceneManager.LoadScene((string)values[1]);
-            this.StopAllCoroutines();
-        }
-        else
-        {
-            fading = false;
-        }
+        fading = false;
+
         yield return null;
     }
 
@@ -91,7 +112,7 @@ public class FadeSystem : MonoBehaviour
     }
 
     public void PerformFadeIn() {
-        object[] tmp = { 1, null };
+        object[] tmp = { -1, null };
         GetComponent<FadeSystem>().StartCoroutine("PerformFade", tmp);
     }
 
@@ -99,5 +120,11 @@ public class FadeSystem : MonoBehaviour
     {
         object[] tmp = { 1, scene };
         GetComponent<FadeSystem>().StartCoroutine("PerformFade", tmp);
+    }
+
+    public void PerformMultiFadeCall(string scene = null)
+    {
+        object[] tmp = { 1, null };
+        GetComponent<FadeSystem>().StartCoroutine("PerformMultiFade", tmp);
     }
 }
