@@ -6,6 +6,7 @@ public class PlayerControls : MonoBehaviour {
 
 	[HideInInspector] public bool facingRight = true;
 	[HideInInspector] public bool jump = false;
+	bool canFlip = false;
 	public float moveForce = 365f;
 	public float maxSpeed = 5f;
 
@@ -42,9 +43,20 @@ public class PlayerControls : MonoBehaviour {
 
 	void Flip()
 	{
-		facingRight = !facingRight;
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
+		
+		if(canFlip){
+			facingRight = !facingRight;
+			Vector3 theScale = transform.localScale;
+			theScale.x *= -1;
+			transform.localScale = theScale;
+		}
+		else{
+			//If can't flip, face right
+			facingRight = !facingRight;
+			Vector3 theScale = transform.localScale;
+			theScale.x *= Mathf.Abs(theScale.x);
+			transform.localScale = theScale;
+		}
+
 	}
 }
