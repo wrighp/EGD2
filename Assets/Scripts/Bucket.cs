@@ -6,7 +6,7 @@ public class Bucket : WaterContainer {
 
 	public static Bucket instance;
     public Transform bucket;
-
+    public float euler;
 	void Awake(){
 		maxWater = 5f;
 		totalWater = 0;
@@ -24,7 +24,8 @@ public class Bucket : WaterContainer {
 	protected override void Update () {
 		isTouching = true;
 		base.Update();
-        if(Mathf.Abs(bucket.rotation.eulerAngles.z) > 90f && bucket.GetComponent<Rigidbody2D>().freezeRotation == false)
+        euler = Mathf.Abs(bucket.rotation.eulerAngles.z);
+        if ((euler > 90f && euler < 180f) || (euler < 270f && euler > 90f) && bucket.GetComponent<Rigidbody2D>().freezeRotation == false)
         {
             totalWater = 0;
         }
