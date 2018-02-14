@@ -24,7 +24,10 @@ public class Bucket : WaterContainer {
 	protected override void Update () {
 		isTouching = true;
 		base.Update();
-
+        if(Mathf.Abs(bucket.rotation.eulerAngles.z) > 90f && bucket.GetComponent<Rigidbody2D>().freezeRotation == false)
+        {
+            totalWater = 0;
+        }
 	}
 
 }
