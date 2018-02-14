@@ -13,6 +13,7 @@ public class Balance : MonoBehaviour {
     public float hingeStart = 0;
     public float hingeMax = 25;
 
+    private bool locked;
     private float  sumDirection = 0;
 
     void Start() {
@@ -26,6 +27,7 @@ public class Balance : MonoBehaviour {
     }
 
     void Update() {
+        if (locked) return;
         if(Input.GetKey(KeyCode.A)){
             sumDirection -= Time.deltaTime / 2;
         } else if (Input.GetKey(KeyCode.D)) {
@@ -50,5 +52,18 @@ public class Balance : MonoBehaviour {
         if(Mathf.Abs(newAngle) > spillThreshold) {
             //Use spill speed to spill water here
         }
+    }
+
+    public void LockBalance(){
+        JointAngleLimits2D tmp = new JointAngleLimits2D();
+
+        tmp.max = hingeStart;
+        tmp.min = hingeStart;
+
+        joint.limits = tmp;
+
+        sumDirection = 0;
+
+        locked = !locked;
     }
 }
