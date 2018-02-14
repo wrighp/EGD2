@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bucket : WaterContainer {
 
 	public static Bucket instance;
+    public Transform bucket;
 
 	void Awake(){
 		maxWater = 5f;

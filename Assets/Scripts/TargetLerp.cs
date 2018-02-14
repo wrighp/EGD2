@@ -13,15 +13,16 @@ public class TargetLerp : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-			
-	}
+        if (target == null)
+        {
+            return;
+        }
+        Vector3 newPos = transform.position;
+        newPos = Vector3.Slerp(newPos, target.position, Time.deltaTime / period);
+        newPos.z = transform.position.z;
+        transform.position = newPos;
+    }
 	void LateUpdate(){
-		if(target == null){
-			return;
-		}
-		Vector3 newPos = transform.position;
-		newPos = Vector3.Slerp(newPos,target.position,Time.deltaTime / period);
-		newPos.z = transform.position.z;
-		transform.position = newPos;
+		
 	}
 }
