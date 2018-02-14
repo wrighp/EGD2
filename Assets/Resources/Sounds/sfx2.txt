@@ -1,0 +1,22 @@
+filling water:
+
+run_water_1
+
+pot insert into water:
+
+water4
+
+walking on dirt:
+bones1
+dirt4
+land_ground
+
+walking on grass:
+grass1
+grass2
+
+walking in water:
+water1
+
+
+
