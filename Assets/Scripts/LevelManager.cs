@@ -2,26 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bucket : WaterContainer {
+public class LevelManager : MonoBehaviour {
 
-	public static Bucket instance;
-
-	void Awake(){
-		maxWater = 5f;
-		totalWater = 0;
-		isDirty = false;
-		isFillable = true;
-		instance = this;	
-
-	}
 	// Use this for initialization
 	void Start () {
-		
+		AudioSource backgroundSound = SoundManager.GetSound("desertloop",false);
+		backgroundSound.loop = true;
+		backgroundSound.Play();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
-
 }

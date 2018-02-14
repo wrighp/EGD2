@@ -21,7 +21,7 @@ public class PlayerControls : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		canFlip = !anim.GetBool("Lift");
 	}
 
 	void FixedUpdate(){
