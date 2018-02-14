@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaterManager : MonoBehaviour {
+
+    public static WaterManager i;
 
     float waterScore = 1f;
     float currentWaterScore = 1f;
@@ -17,6 +20,7 @@ public class WaterManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        i = this;
         waterScore = maxPeopleAlive;
         currentWaterScore = maxPeopleAlive;
         previousWaterScore = maxPeopleAlive;
@@ -40,5 +44,19 @@ public class WaterManager : MonoBehaviour {
 
         healthyPeople = (int)Mathf.Floor(waterScore);
         deadPeople = ((int)maxPeopleAlive - healthyPeople - sickPeople);
+
+        int deadColor = deadPeople;
+        int sickColor = sickPeople;
+        foreach(Image i in GameObject.Find("FamilyHolder").GetComponentsInChildren<Image>()) {
+            if (deadColor > 0) {
+                i.color = new Color(0, 0, 0);
+                deadColor--;
+            } else if (sickColor > 0) {
+                i.color = new Color(1, 0, 0);
+                sickColor--;
+            } else {
+                i.color = new Color(1, 1, 1);
+            }
+        }
     }
 }
