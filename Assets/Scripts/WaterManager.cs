@@ -19,6 +19,8 @@ public class WaterManager : MonoBehaviour {
     public int sickPeople = 0;
     public int deadPeople = 0;
 
+    int[] healthStatus;
+
 	// Use this for initialization
 	void Start () {
         i = this;
@@ -26,7 +28,9 @@ public class WaterManager : MonoBehaviour {
         currentWaterScore = maxPeopleAlive;
         previousWaterScore = maxPeopleAlive;
 
-		CalculateDailyScore(maxPeopleAlive);
+        healthStatus = new int[] { 2,2,2,2,2 };
+
+        CalculateDailyScore(maxPeopleAlive);
 	}
 
     public void CalculateDailyScore(float waterAmount) {
@@ -39,27 +43,26 @@ public class WaterManager : MonoBehaviour {
             waterScore -= Mathf.Min(lossAmountPrevious, lossAmount);
         }
 
-        if(waterScore % 1 != 0) {
-            sickPeople = 1;
-        } else {
-            sickPeople = 0;
+        for(int i = 0; i < 5; ++i) {
+            if (currentWaterScore < i) {
+                healthStatus[i] -= 1; //Set sick or dead
+            } else if (i <= currentWaterScore && healthStatus[i] != 0) {
+                healthStatus[i] = 2; //Set healthy again
+            }
         }
 
-        healthyPeople = (int)Mathf.Floor(waterScore);
-        deadPeople = ((int)maxPeopleAlive - healthyPeople - sickPeople);
-
-        int deadColor = deadPeople;
-        int sickColor = sickPeople;
+        int j = 0;
+        int deadPeople = 0;
         foreach(Image i in GameObject.Find("FamilyHolder").GetComponentsInChildren<Image>()) {
-            if (deadColor > 0) {
+            if (healthStatus[j] == 0) {
                 i.color = new Color(0, 0, 0);
-                deadColor--;
-            } else if (sickColor > 0) {
+                deadPeople++;
+            } else if (healthStatus[j] == 1) {
                 i.color = new Color(1, 0, 0);
-                sickColor--;
             } else {
                 i.color = new Color(1, 1, 1);
             }
+            j++;
         }
 
 		for(int i = 0; i < graves.Count; i++){
