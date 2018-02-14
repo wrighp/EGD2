@@ -14,12 +14,10 @@ public class WaterIcon : MonoBehaviour {
 	public bool isTouching = false;
 	public float waterRatio = 0;
 	public bool waterDirty = false;
-	float waterlevel = 0f;
 	Vector3 targetScale;
 	// Use this for initialization
 	void Start () {
 		targetScale = transform.localScale;
-		waterlevel = waterRatio;
 	}
 	
 	// Update is called once per frame

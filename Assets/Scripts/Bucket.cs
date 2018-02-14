@@ -20,8 +20,10 @@ public class Bucket : WaterContainer {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	protected override void Update () {
+		isTouching = true;
+		base.Update();
+
 	}
 
 }
