@@ -541,8 +541,8 @@ DistanceJoint2D:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: -0.054999948, y: -0.09650004}
-  m_ConnectedAnchor: {x: -0.08000004, y: -0.08000016}
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 0
   m_Distance: 0.005
   m_MaxDistanceOnly: 0
@@ -561,7 +561,7 @@ Rigidbody2D:
   m_Mass: 0.1
   m_LinearDrag: 4
   m_AngularDrag: 0.05
-  m_GravityScale: 0.75
+  m_GravityScale: 0.8
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -997,7 +997,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 7b811e37a2bfa6b4ca7eb3309f213423, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
